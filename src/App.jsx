@@ -1,24 +1,11 @@
 import React from 'react'
-import { BrowserRouter,Routes,Route } from 'react-router-dom'
-import SupplierDashboard from './components/SupplierDashboard'
-
-
-
+import { BrowserRouter } from 'react-router-dom'
+import AdminRoutes from './admin/routes/AdminRoutes'
 
 const App = () => {
   return (
-  
-<BrowserRouter>
-
-      <Routes>
-
-        <Route
-          path="/supplier/dashboard"
-          element={<SupplierDashboard />}
-        />
-
-      </Routes>
-
+    <BrowserRouter>
+      <AdminRoutes />
     </BrowserRouter>
   )
 }
