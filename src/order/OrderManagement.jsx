@@ -106,7 +106,7 @@ const OrderManagement = () => {
   ) => {
 
     const newNotification = {
-      id: Date.now(),
+      id: Date.now() + Math.random(),
       title,
       message,
       type,
@@ -152,113 +152,62 @@ const OrderManagement = () => {
     )
   }
 
-  const createVendorRequest = () => {
-
-    addNotification(
-      'New Vendor Request',
-      'Vendor requested Laptop',
-      'vendor_request'
-    )
-  }
-
-  const supplierApproval = (
-    orderId
-  ) => {
-
-    addNotification(
-      'Supplier Approval',
-      `Order ${orderId} approved`,
-      'approval'
-    )
-  }
-
-  const orderStatusChanged = (
-    orderId,
-    status
-  ) => {
-
-    addNotification(
-      'Order Status Changed',
-      `Order ${orderId} changed to ${status}`,
-      'status_change'
-    )
-  }
-
   return (
-  <div className="order-container">
+    <div className="order-container">
 
-   
-    <div className="order-header">
+      <div className="order-header">
 
-      <h2> Order Management</h2>
+        <h2>
+          Order Management
+        </h2>
 
-      <div
-        style={{
-          position: 'relative'
-        }}
-      >
-        <NotificationBell
-          notifications={notifications}
-          setShowDropdown={setShowDropdown}
-        />
-
-        {showDropdown && (
-          <NotificationDropdown
+        <div
+          style={{
+            position: 'relative'
+          }}
+        >
+          <NotificationBell
             notifications={notifications}
-            markAsRead={markAsRead}
-            markAllAsRead={markAllAsRead}
+            setShowDropdown={
+              setShowDropdown
+            }
           />
-        )}
+
+          {showDropdown && (
+            <NotificationDropdown
+              notifications={
+                notifications
+              }
+              markAsRead={
+                markAsRead
+              }
+              markAllAsRead={
+                markAllAsRead
+              }
+            />
+          )}
+        </div>
+
       </div>
 
-    </div>
-
-    
-    <div className="action-buttons">
-
-      <button
-        onClick={createVendorRequest}
-      >
-        Vendor Request
-      </button>
-
-      <button
-        onClick={() =>
-          supplierApproval('ORD001')
+      <OrderSearch
+        searchTerm={searchTerm}
+        setSearchTerm={
+          setSearchTerm
         }
-      >
-         Supplier Approval
-      </button>
+      />
 
-      <button
-        onClick={() =>
-          orderStatusChanged(
-            'ORD001',
-            'Completed'
-          )
+      <OrderTable
+        orders={orders}
+        setOrders={setOrders}
+        searchTerm={searchTerm}
+        addNotification={
+          addNotification
         }
-      >
-        Status Change
-      </button>
+      />
 
     </div>
-
-   
-    <OrderSearch
-      searchTerm={searchTerm}
-      setSearchTerm={setSearchTerm}
-    />
-
-    
-    <OrderTable
-      orders={orders}
-      setOrders={setOrders}
-      searchTerm={searchTerm}
-      addNotification={addNotification}
-    />
-
-  </div>
-)
+  )
 }
 
 export default OrderManagement
