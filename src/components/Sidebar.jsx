@@ -1,117 +1,297 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
-  const sidebarStyle = {
-    width: '250px',
-    minHeight: '100vh',
-    background: '#1e293b',
-    padding: '20px',
-    boxSizing: 'border-box'
-  }
-
-  const adminStyle = {
-    textAlign: 'center',
-    marginBottom: '30px',
-    padding: '15px',
-    background: '#334155',
-    borderRadius: '12px'
-  }
-
-  const avatarStyle = {
-    width: '70px',
-    height: '70px',
-    borderRadius: '50%',
-    background: '#2563eb',
-    color: '#fff',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '28px',
-    fontWeight: 'bold',
-    margin: '0 auto 10px'
-  }
-
-  const menuStyle = {
-    display: 'block',
-    color: '#fff',
-    textDecoration: 'none',
-    padding: '12px',
-    marginBottom: '10px',
-    borderRadius: '8px',
-    background: '#334155',
-    fontWeight: '500'
-  }
+  const [invoiceOpen, setInvoiceOpen] = useState(true);
+  const [billingOpen, setBillingOpen] = useState(true);
+  const [paymentOpen, setPaymentOpen] = useState(true);
+  const [reportOpen, setReportOpen] = useState(true);
 
   return (
-    <div style={sidebarStyle}>
+    <div style={styles.sidebar}>
+     
 
-      
-      <div style={adminStyle}>
-        <div style={avatarStyle}>
-          A
-        </div>
-
-        <h3
-          style={{
-            color: '#fff',
-            margin: '5px 0'
-          }}
-        >
-          Admin User
-        </h3>
-
-        <p
-          style={{
-            color: '#cbd5e1',
-            fontSize: '14px',
-            margin: 0
-          }}
-        >
-          Administrator
-        </p>
+      <div style={styles.logo}>
+        <h2>Invoice System</h2>
       </div>
 
       
 
       <NavLink
-        to="/dashboard"
+        to="/finance/create-invoice"
         style={({ isActive }) => ({
-          ...menuStyle,
-          background: isActive
-            ? '#2563eb'
-            : '#334155'
+          ...styles.link,
+          background: isActive ? "#2563eb" : "#334155",
         })}
       >
-        Dashboard
+         Dashboard
       </NavLink>
 
-      <NavLink
-        to="/reports"
-        style={({ isActive }) => ({
-          ...menuStyle,
-          background: isActive
-            ? '#2563eb'
-            : '#334155'
-        })}
-      >
-         Reports
-      </NavLink>
+     
 
-      <NavLink
-        to="/notifications"
-        style={({ isActive }) => ({
-          ...menuStyle,
-          background: isActive
-            ? '#2563eb'
-            : '#334155'
-        })}
-      >
-         Notifications
-      </NavLink>
+      <div>
+        <button
+          style={styles.menuButton}
+          onClick={() => setInvoiceOpen(!invoiceOpen)}
+        >
+           Invoices
+        </button>
 
+        {invoiceOpen && (
+          <div style={styles.subMenu}>
+            <NavLink
+              to="/finance/create-invoice"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              Create Invoice
+            </NavLink>
+
+            <NavLink
+              to="/finance/invoices"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              Invoice List
+            </NavLink>
+
+            <NavLink
+              to="/finance/view-invoice"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              View Invoice
+            </NavLink>
+          </div>
+        )}
+      </div>
+
+      
+
+      <div>
+        <button
+          style={styles.menuButton}
+          onClick={() => setBillingOpen(!billingOpen)}
+        >
+           Billing
+        </button>
+
+        {billingOpen && (
+          <div style={styles.subMenu}>
+            <NavLink
+              to="/finance/billing"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              Billing Dashboard
+            </NavLink>
+
+            <NavLink
+              to="/finance/revenue-overview"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              Revenue Overview
+            </NavLink>
+
+            <NavLink
+              to="/finance/paid-amount"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              Paid Amount
+            </NavLink>
+
+            <NavLink
+              to="/finance/pending-amount"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              Pending Amount
+            </NavLink>
+
+            <NavLink
+              to="/finance/overdue-amount"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              Overdue Amount
+            </NavLink>
+          </div>
+        )}
+      </div>
+
+     
+
+      <div>
+        <button
+          style={styles.menuButton}
+          onClick={() => setPaymentOpen(!paymentOpen)}
+        >
+           Payments
+        </button>
+
+        {paymentOpen && (
+          <div style={styles.subMenu}>
+            <NavLink
+              to="/finance/payments"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              Payment History
+            </NavLink>
+
+            <NavLink
+              to="/finance/payment-status"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              Payment Status
+            </NavLink>
+
+            <NavLink
+              to="/finance/transaction-details"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              Transaction Details
+            </NavLink>
+          </div>
+        )}
+      </div>
+
+      
+
+      <div>
+        <button
+          style={styles.menuButton}
+          onClick={() => setReportOpen(!reportOpen)}
+        >
+          Reports
+        </button>
+
+        {reportOpen && (
+          <div style={styles.subMenu}>
+            <NavLink
+              to="/finance/reports"
+              style={({ isActive }) => ({
+                ...styles.subLink,
+                background: isActive
+                  ? "#2563eb"
+                  : "transparent",
+              })}
+            >
+              Reports Dashboard
+            </NavLink>
+            
+          </div>
+        )}
+      </div>
+      
+      
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+const styles = {
+  sidebar: {
+    width: "270px",
+    minHeight: "100vh",
+    background: "#1e293b",
+    color: "#ffffff",
+    padding: "20px",
+    boxSizing: "border-box",
+    overflowY: "auto",
+  },
+
+  logo: {
+    textAlign: "center",
+    marginBottom: "30px",
+    borderBottom: "1px solid #334155",
+    paddingBottom: "15px",
+  },
+
+  link: {
+    display: "block",
+    padding: "12px",
+    color: "#ffffff",
+    textDecoration: "none",
+    borderRadius: "6px",
+    marginBottom: "15px",
+    transition: "0.3s",
+  },
+
+  menuButton: {
+    width: "100%",
+    textAlign: "left",
+    padding: "12px",
+    background: "#334155",
+    border: "none",
+    color: "#ffffff",
+    cursor: "pointer",
+    borderRadius: "6px",
+    marginBottom: "5px",
+    fontSize: "15px",
+  },
+
+  subMenu: {
+    marginLeft: "10px",
+    marginBottom: "15px",
+  },
+
+  subLink: {
+    display: "block",
+    padding: "10px",
+    color: "#ffffff",
+    textDecoration: "none",
+    borderRadius: "5px",
+    marginBottom: "5px",
+    transition: "0.3s",
+  },
+};
+
+export default Sidebar;

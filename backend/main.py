@@ -1,31 +1,29 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers.orders import router as order_router
-from routers.notifications import router as notification_router
-from routers.reports import router as report_router
-from routers.login import router as login_router
+from routes.invoice_routes import router as invoice_router
+from routes.payment_routes import router as payment_router
+from routes.billing_routes import router as billing_router
 
 app = FastAPI()
+
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
-app.include_router(login_router)
-app.include_router(order_router)
-app.include_router(notification_router)
-app.include_router(report_router)
+
+app.include_router(invoice_router)
+app.include_router(payment_router)
+app.include_router(billing_router)
 
 
 @app.get("/")
 def home():
     return {
-        "message":
-        "Order Management Backend Running"
+        "message": "Invoice Billing Backend Running"
     }
-

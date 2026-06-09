@@ -1,0 +1,106 @@
+.invoice-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f4f7fc, #e8eefc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.invoice-card {
+  width: 90%;
+  max-width: 700px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-title {
+  text-align: center;
+  color: #1e3a8a;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.invoice-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.invoice-form input,
+.invoice-form textarea,
+.invoice-form select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: 0.3s;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.invoice-form textarea {
+  min-height: 100px;
+  resize: vertical;
+  grid-column: span 2;
+}
+
+.invoice-form input:focus,
+.invoice-form textarea:focus,
+.invoice-form select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.2);
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.total-box {
+  grid-column: span 2;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.total-box h3 {
+  color: #1e40af;
+  margin: 0;
+}
+
+.submit-btn {
+  grid-column: span 2;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .invoice-form {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width,
+  .submit-btn,
+  .total-box,
+  .invoice-form textarea {
+    grid-column: span 1;
+  }
+}

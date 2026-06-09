@@ -1,0 +1,83 @@
+.navbar {
+  height: 75px;
+  background: linear-gradient(
+    135deg,
+    #0f172a,
+    #1e3a8a
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-logo h2 {
+  color: white;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-box {
+  width: 280px;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 14px;
+}
+
+.search-box::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.nav-btn {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  background: #3b82f6;
+  transform: translateY(-2px);
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  padding: 6px 15px;
+  border-radius: 25px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: bold;
+}

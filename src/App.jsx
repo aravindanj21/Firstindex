@@ -1,62 +1,38 @@
-import React from 'react'
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate
-} from 'react-router-dom'
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
-import MainLayout from './layout/MainLayout'
-
-import OrderManagement from './order/OrderManagement'
-import ReportsPage from './order/reports/ReportsPage'
-import NotificationsPage from './order/notifications/NotificationsPage'
+import Sidebar from "./components/Sidebar";
+import Navbar from "./finance/Navbar";
+import FinanceRoutes from "./finance/FinanceRoutes";
 
 function App() {
   return (
     <BrowserRouter>
+      <div style={styles.appContainer}>
+        <Sidebar />
 
-      <Routes>
+        <div style={styles.mainContent}>
+          <Navbar />
 
-        <Route
-          path="/"
-          element={<MainLayout />}
-        >
-
-          <Route
-            index
-            element={
-              <Navigate
-                to="/dashboard"
-              />
-            }
-          />
-
-          <Route
-            path="dashboard"
-            element={
-              <OrderManagement />
-            }
-          />
-
-          <Route
-            path="reports"
-            element={
-              <ReportsPage />
-            }
-          /> <Route
-    path="notifications"
-    element={<NotificationsPage />}
-  />
-
-         
-
-        </Route>
-
-      </Routes>
-
+          <FinanceRoutes />
+        </div>
+      </div>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+const styles = {
+  appContainer: {
+    display: "flex",
+    minHeight: "100vh",
+    background: "#f4f6f9",
+  },
+
+  mainContent: {
+    flex: 1,
+    padding: "20px",
+    overflowY: "auto",
+  },
+};
+
+export default App;
