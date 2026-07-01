@@ -1,18 +1,22 @@
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from routes.product import router as product_router
 
 app = FastAPI()
 
-@app.get("/")
-def home():
-    return {"message": "Backend Running"}
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.websocket("/ws/{user_id}")
-async def websocket_endpoint(
-    websocket: WebSocket,
-    user_id: int
-):
-    await websocket.accept()
+app.include_router(
+    product_router,
+    prefix="/api/products",
+    tags=["Products"],
+)
 
-    while True:
-        data = await websocket.receive_text()
-        await websocket.send_text(f"User {user_id}: {data}")

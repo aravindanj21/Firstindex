@@ -5,5 +5,5 @@ def get_connection():
         host="localhost",
         user="root",
         password="admin",
-        database="vendorsupplierdb"
+        database="supplier_system_db"
     )

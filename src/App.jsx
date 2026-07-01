@@ -1,63 +1,37 @@
-import {
-  Routes,
-  Route
-} from "react-router-dom";
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import SupplierVerification from "./Pages/SupplierVerification";
-import SupplierDashboard from "./pages/SupplierDashboard";
-import SupplierRegister from "./Pages/SupplierRegister";
-import Login from "./Pages/vendorverification/Login";
+import SupplierSidebar from "./Pages/supplier/SupplierSidebar";
+import SupplierDashboard from "./Pages/supplier/SupplierDashboard";
+import ProductList from "./Pages/supplier/ProductList";
+import AddProduct from "./Pages/supplier/AddProduct";
+import BulkUploadProducts from "./Pages/supplier/BulkUploadProducts";
+import Orders from "./Pages/supplier/Orders";
 
-
-import AdminSupplierVerification
-  from "./pages/AdminSupplierVerification";
-
-import AddProduct from "./Pages/AddProduct";
-import SupplierOrders from "./Pages/SupplierOrders";
-
-function App() {
+function SupplierLayout() {
   return (
-    <Routes>
-      <Route
-       path="/supplier-verification"
-       element={<SupplierVerification />}
-       />      
+    <div style={{ display: "flex", minHeight: "100vh" }}>
+      <SupplierSidebar />
 
-      <Route
-      path="/supplier-dashboard"
-      element={<SupplierDashboard />}
-      />
-
-      <Route
-     path="/admin/supplier-verifications"
-     element={<AdminSupplierVerification />}
-     />
-
-     <Route
-     path="/supplier-register"
-     element={<SupplierRegister />}
-    />
-
-    <Route
-    path="/login"
-    element={<Login />}
-    />
-
-     <Route
-    path="/add-product"
-    element={<AddProduct />}
-  />
-
-    <Route
-    path="/supplier-orders"
-    element={<SupplierOrders />}
-  />
-
-
-      
-    </Routes>
-   
+      <div style={{ flex: 1, padding: "20px", background: "#f5f5f5" }}>
+        <Routes>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<SupplierDashboard />} />
+          <Route path="products" element={<ProductList />} />
+          <Route path="add-product" element={<AddProduct />} />
+          <Route path="bulk-upload" element={<BulkUploadProducts />} />
+          <Route path="orders" element={<Orders />} />
+        </Routes>
+      </div>
+    </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to="/supplier/dashboard" replace />} />
+      <Route path="/supplier/*" element={<SupplierLayout />} />
+    </Routes>
+  );
+}
